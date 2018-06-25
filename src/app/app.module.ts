@@ -2,15 +2,35 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CreateComponent } from './create/create.component';
+import { IndexComponent } from './index/index.component';
+import { EditComponent } from './edit/edit.component';
+import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { AdunitService } from './adunit.service';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/index', pathMatch: 'full'},
+  { path: 'create', component: CreateComponent },
+  { path: 'edit/:id', component: EditComponent },
+  { path: 'index', component: IndexComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateComponent,
+    IndexComponent,
+    EditComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AdunitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
